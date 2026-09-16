@@ -92,21 +92,21 @@ Wallet
 - Spring Security
 - BCrypt password hashing
 - Protected wallet APIs
-
 ## Screenshots
 
-### Login
+### Login Page
 ![Login Page](screenshots/login.png)
 
-### Registration
+### Registration Page
 ![Registration Page](screenshots/signup.png)
 
 ### Wallet Dashboard
 ![Wallet Dashboard](screenshots/dashboard1.png)
-![Wallet Dashboard](screenshots/dashboard2.png)
+
+### Send Crypto & Transaction History
+![Send Crypto and Transaction History](screenshots/dashboard2.png)
 
 ## Note
-
 This project simulates cryptocurrency wallet transactions
 using a Spring Boot backend and MySQL database.
 It is not connected to a real blockchain network.
