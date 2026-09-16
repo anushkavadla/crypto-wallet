@@ -93,6 +93,18 @@ Wallet
 - BCrypt password hashing
 - Protected wallet APIs
 
+## Screenshots
+
+### Login
+![Login Page](screenshots/login.png)
+
+### Registration
+![Registration Page](screenshots/signup.png)
+
+### Wallet Dashboard
+![Wallet Dashboard](screenshots/dashboard1.png)
+![Wallet Dashboard](screenshots/dashboard2.png)
+
 ## Note
 
 This project simulates cryptocurrency wallet transactions
