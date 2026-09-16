@@ -31,6 +31,9 @@ public class Wallet {
     @Column(nullable = false, precision = 19, scale = 8)
     private BigDecimal balance;
 
+    @Column(name = "wallet_address", nullable = false, unique = true, length = 66)
+    private String walletAddress;
+
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
@@ -38,14 +41,21 @@ public class Wallet {
     private LocalDateTime updatedAt;
 
     @PrePersist
-    protected void onCreate() {
-        LocalDateTime now = LocalDateTime.now();
-        createdAt = now;
-        updatedAt = now;
-    }
+protected void onCreate() {
+    LocalDateTime now = LocalDateTime.now();
+    createdAt = now;
+    updatedAt = now;
 
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
+    if (walletAddress == null || walletAddress.isBlank()) {
+        walletAddress = "0x" + java.util.UUID.randomUUID()
+                .toString()
+                .replace("-", "");
     }
+}
+
+@PreUpdate
+protected void onUpdate() {
+    updatedAt = LocalDateTime.now();
+}
+
 }

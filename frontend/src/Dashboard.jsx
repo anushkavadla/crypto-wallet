@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { QRCodeCanvas } from "qrcode.react";
 
 function Dashboard() {
   const [wallet, setWallet] = useState(null);
@@ -9,7 +10,8 @@ function Dashboard() {
   const [amount, setAmount] = useState("");
   const [sendMessage, setSendMessage] = useState("");
   const [sending, setSending] = useState(false);
-
+  const [showReceive, setShowReceive] = useState(false);
+  const [copied, setCopied] = useState(false);
   const fetchWallet = async () => {
     const token = localStorage.getItem("token");
 
@@ -236,7 +238,69 @@ function Dashboard() {
           </div>
 
         </div>
+            <div
+  className="info-card"
+  style={{
+    marginTop: "25px",
+    padding: "25px"
+  }}
+>
+  <h3>Receive Crypto</h3>
 
+  <p>
+    Receive crypto using your wallet address.
+  </p>
+
+  <button
+    type="button"
+    className="logout-button"
+    onClick={() => setShowReceive(!showReceive)}
+  >
+    {showReceive ? "Hide QR Code" : "Show QR Code"}
+  </button>
+
+  {showReceive && wallet?.walletAddress && (
+    <div
+      style={{
+        marginTop: "20px",
+        textAlign: "center"
+      }}
+    >
+      <QRCodeCanvas
+        value={wallet.walletAddress}
+        size={180}
+        level="H"
+      />
+
+      <p
+        style={{
+          marginTop: "15px",
+          wordBreak: "break-all"
+        }}
+      >
+        {wallet.walletAddress}
+      </p>
+
+      <button
+        type="button"
+        className="logout-button"
+        onClick={async () => {
+          await navigator.clipboard.writeText(
+            wallet.walletAddress
+          );
+
+          setCopied(true);
+
+          setTimeout(() => {
+            setCopied(false);
+          }, 2000);
+        }}
+      >
+        {copied ? "Copied!" : "Copy Address"}
+      </button>
+    </div>
+  )}
+</div>
         {/* SEND CRYPTO */}
 
         <div
